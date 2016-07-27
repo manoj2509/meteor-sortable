@@ -149,12 +149,13 @@ Template.sortable.rendered = function () {
 		// let the user decorate the object with additional properties before insertion
 		if (optionsOnAdd) {
       optionsOnAdd(event);
-    } else {
+      }
       // Insert the new element at the end of the list and move it where it was dropped.
       // We could insert it at the beginning, but that would lead to negative orders.
+	  if (typeof(event.data._id) === 'undefined' || event.data._id === null) {
       var sortSpecifier = {};
       sortSpecifier[orderField] = -1;
-      event.data.order = templateInstance.collection.findOne({}, {sort: sortSpecifier, limit: 1}).order + 1;
+      // event.data.order = templateInstance.collection.findOne({}, {sort: sortSpecifier, limit: 1}).order + 1;
       // TODO: this can obviously be optimized by setting the order directly as the arithmetic average, with the caveats described above
       var newElementId = templateInstance.collection.insert(event.data);
       event.data._id = newElementId;
@@ -166,7 +167,7 @@ Template.sortable.rendered = function () {
       }
       // remove the dropped HTMLElement from the list because we have inserted it in the collection, which will update the template
       itemEl.parentElement.removeChild(itemEl);
-    }
+	  }
 	};
 
 	// element was removed by dragging into another list
@@ -178,12 +179,11 @@ Template.sortable.rendered = function () {
 
     if (optionsOnRemove) {
       optionsOnRemove(event);
-    } else {
+    }
       if (typeof templateInstance.options.group === 'undefined'
         || typeof templateInstance.options.group.pull === 'undefined'
         || templateInstance.options.group.pull === true
       ) templateInstance.collection.remove(event.data._id);
-    }
 	};
 
 	// just compute the `data` context

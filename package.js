@@ -1,7 +1,7 @@
 // Package metadata file for Meteor.js
 'use strict';
 
-var packageName = 'rubaxa:sortable';  // https://atmospherejs.com/rubaxa/sortable
+var packageName = 'manoj2509:sortable';  // https://atmospherejs.com/rubaxa/sortable
 var gitHubPath = 'RubaXa/Sortable';  // https://github.com/RubaXa/Sortable
 var npmPackageName = 'sortablejs';  // https://www.npmjs.com/package/sortablejs - optional but recommended; used as fallback if GitHub fails
 
@@ -10,7 +10,7 @@ Package.describe({
   name: packageName,
   summary: 'Sortable: reactive minimalist reorderable drag-and-drop lists on modern browsers and touch devices',
   version: '1.4.2',
-  git: 'https://github.com/RubaXa/Sortable.git',
+  git: 'https://github.com/manoj2509/meteor-sortable.git',
   documentation: 'README.md'
 });
 
